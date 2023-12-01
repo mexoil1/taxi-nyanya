@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import City, Constants
+from .models import City, Constant, MinPriceOfTrip, PriceByChildren
 
 admin.site.register(City)
-admin.site.register(Constants)
+admin.site.register(Constant)
+admin.site.register(MinPriceOfTrip)
+admin.site.register(PriceByChildren)

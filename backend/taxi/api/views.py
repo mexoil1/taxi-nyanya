@@ -96,7 +96,7 @@ class CostOfTaxi(APIView):
             base_result = data['time'] / time_cost_divisor * \
                 constants[f'{item}'] * (city_koeff / constants['j'])
             result[f'{item}'] = int(
-                base_result / 2) if data["with_friend"] else int(base_result)
+                base_result * 65 / 100) if data["with_friend"] else int(base_result)
         return result
 
     def check_price_by_database(self, orders: QuerySet[Order], rates: List[str], rates_db: List[str]) -> Dict[str, int]:

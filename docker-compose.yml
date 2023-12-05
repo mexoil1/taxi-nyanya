@@ -1,0 +1,29 @@
+version: '1'
+
+volumes:
+  pg_data_taxi:
+  static_taxi:
+  redis_data:
+
+
+services:
+  db:
+    container_name: taxi_db
+    image: postgres:13.10
+    env_file: .env
+    volumes:
+      - pg_data_taxi:/var/lib/postgresql/data
+  backend:
+    container_name: taxi_backend
+    build: ./backend/
+    env_file: .env
+    volumes:
+      - static_taxi:/static_backend
+  gateway:
+    container_name: taxi_gateway
+    build: ./gateway/
+    env_file: .env
+    ports:
+      - 8088:8088
+    volumes:
+      - static_taxi:/static
